@@ -1,6 +1,6 @@
 {
     "name": "MQTT",
-    "docs": "https://github.com/Trilife/udi-mqtt-pg3",
+    "docs": "https://github.com/n2uns/udi-mqtt-pg3",
     "type": "python3",
     "executable": "mqtt-poly.py",
     "install": "install.sh",
@@ -21,7 +21,7 @@
             "author": "xKing",
             "version": "0.0.11",
             "date": "12 July, 2023",
-            "source": "https://github.com/Trilife/udi-mqtt-pg3",
+            "source": "https://github.com/n2uns/udi-mqtt-pg3",
             "license": "https://raw.githubusercontent.com/Trilife/udi-mqtt-pg3/master/LICENSE"
         }
     ]
