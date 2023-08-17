@@ -861,7 +861,7 @@ class MQAnalog(udi_interface.Node):
             return False
         if "ANALOG" in data:
             self.setDriver("ST", 1)
-            if "A0" in data["ANALOG"]:
+            if "A1" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["A0"])
             elif "Range" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["Range"])
