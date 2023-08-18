@@ -97,6 +97,12 @@ ND-MQANAL-ICON = Input
 ST-ANALOG-GPV-NAME = Analog Input
 ST-ANALOG-ST-NAME = Status
 
+# analog1
+ND-MQANAL-NAME = MQTT Analog
+ND-MQANAL-ICON = Input
+ST-ANALOG-GPV-NAME = Analog Input
+ST-ANALOG-ST-NAME = Status
+
 # s31
 ND-MQS31-NAME = MQTT S31 Energy
 ND-MQS31-ICON = EnergyMonitor

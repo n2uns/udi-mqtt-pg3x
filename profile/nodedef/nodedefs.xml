@@ -151,7 +151,20 @@
             </accepts>
         </cmds>
     </nodeDef>
-    <nodeDef id="MQS31" nls="S31">
+     <nodeDef id="MQANAL" nls="ANALOG1">
+        <editors />
+        <sts>
+            <st id="ST" editor="BOOL" />
+            <st id="GPV" editor="ANALOG" />
+        </sts>
+        <cmds>
+            <sends />
+            <accepts>
+                <cmd id="QUERY" />
+            </accepts>
+        </cmds>
+    </nodeDef>
+   <nodeDef id="MQS31" nls="S31">
         <editors />
         <sts>
             <st id="ST" editor="BOOL" />
