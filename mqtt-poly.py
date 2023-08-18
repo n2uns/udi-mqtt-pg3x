@@ -1053,17 +1053,6 @@ class MQRGBWstrip(udi_interface.Node):
     id = "MQRGBW"
 
     commands = {"QUERY": query, "DON": led_on, "DOF": led_off, "SETRGBW": rgbw_set}
-
-
-if __name__ == "__main__":
-    try:
-        polyglot = udi_interface.Interface([])
-        polyglot.start()
-        Controller(polyglot, 'mqctrl', 'mqctrl', 'MQTT')
-        polyglot.runForever()
-    except (KeyboardInterrupt, SystemExit):
-        sys.exit(0)
-
 # General purpose Analog input using ADC.
 # Setting max value in editor.xml as 1024, as that would be the max for
 # onboard ADC, but that might need to be changed for external ADCs.
@@ -1110,7 +1099,18 @@ class MQAnalog1(udi_interface.Node):
         {"driver": "GPV", "value": 0, "uom": 56},
     ]
 
-    id = "MQANAL"
+    id = "MQANAL1"
 
     commands = {"QUERY": query}
+
+
+
+if __name__ == "__main__":
+    try:
+        polyglot = udi_interface.Interface([])
+        polyglot.start()
+        Controller(polyglot, 'mqctrl', 'mqctrl', 'MQTT')
+        polyglot.runForever()
+    except (KeyboardInterrupt, SystemExit):
+        sys.exit(0)
 
