@@ -158,6 +158,11 @@ class Controller(udi_interface.Node):
                     LOGGER.info("Adding {} {}".format(dev["type"], name))
                     self.poly.addNode(MQAnalog(self.poly, self.address, address, name, dev))
                     self._add_status_topics(dev, [dev["status_topic"]])
+            elif dev["type"] == "analog1":
+                    if not self.poly.getNode(address):
+                        LOGGER.info("Adding {} {}".format(dev["type"], name))
+                        self.poly.addNode(MQAnalog1(self.poly, self.address, address, name, dev))
+                        self._add_status_topics(dev, [dev["status_topic"]])
             elif dev["type"] == "s31":
                 if not self.poly.getNode(address):
                     LOGGER.info("Adding {} {}".format(dev["type"], name))
@@ -861,7 +866,7 @@ class MQAnalog(udi_interface.Node):
             return False
         if "ANALOG" in data:
             self.setDriver("ST", 1)
-            if "A1" in data["ANALOG"]:
+            if "A0" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["A0"])
             elif "Range" in data["ANALOG"]:
                 self.setDriver("GPV", data["ANALOG"]["Range"])
@@ -1058,3 +1063,54 @@ if __name__ == "__main__":
         polyglot.runForever()
     except (KeyboardInterrupt, SystemExit):
         sys.exit(0)
+
+# General purpose Analog input using ADC.
+# Setting max value in editor.xml as 1024, as that would be the max for
+# onboard ADC, but that might need to be changed for external ADCs.
+class MQAnalog1(udi_interface.Node):
+    def __init__(self, polyglot, primary, address, name, device):
+        super().__init__(polyglot, primary, address, name)
+        self.on = False
+
+    def updateInfo(self, payload, topic: str):
+        try:
+            data = json.loads(payload)
+        except Exception as ex:
+            LOGGER.error(
+                "Failed to parse MQTT Payload as Json: {} {}".format(ex, payload)
+            )
+            return False
+        if "ANALOG" in data:
+            self.setDriver("ST", 1)
+            if "A1" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["A1"])
+            elif "Range" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["Range"])
+            elif "Temperature" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["Temperature"])
+            elif "Illuminance" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["Illuminance"])
+            elif "pH0" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["pH0"])
+            elif "MQ2_0" in data["ANALOG"]:
+                self.setDriver("GPV", data["ANALOG"]["MQ2_0"])
+            else:
+                LOGGER.warn(f"Unable to handle data for topic {topic}")
+        else:
+            self.setDriver("ST", 0)
+            self.setDriver("GPV", 0)
+
+    def query(self, command=None):
+        self.reportDrivers()
+
+    # GPV = "General Purpose Value"
+    # UOM:56 = "The raw value reported by device"
+    drivers = [
+        {"driver": "ST", "value": 0, "uom": 2},
+        {"driver": "GPV", "value": 0, "uom": 56},
+    ]
+
+    id = "MQANAL"
+
+    commands = {"QUERY": query}
+
