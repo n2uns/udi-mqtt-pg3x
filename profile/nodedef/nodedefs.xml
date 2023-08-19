@@ -151,11 +151,11 @@
             </accepts>
         </cmds>
     </nodeDef>
-     <nodeDef id="MQANAL" nls="ANALOG1">
+     <nodeDef id="MQANAL1" nls="ANALOG1">
         <editors />
         <sts>
             <st id="ST" editor="BOOL" />
-            <st id="GPV" editor="ANALOG" />
+            <st id="GPV" editor="ANALOG1" />
         </sts>
         <cmds>
             <sends />
