@@ -1053,9 +1053,9 @@ class MQRGBWstrip(udi_interface.Node):
     id = "MQRGBW"
 
     commands = {"QUERY": query, "DON": led_on, "DOF": led_off, "SETRGBW": rgbw_set}
-# General purpose Analog input using ADC.
-# Setting max value in editor.xml as 1024, as that would be the max for
-# onboard ADC, but that might need to be changed for external ADCs.
+# General purpose Analog input using ADC With Sonoff Ch4 with ESP32.
+# Setting max value in editor.xml as 4096, as that would be the max for
+# onboard ADC.
 class MQAnalog1(udi_interface.Node):
     def __init__(self, polyglot, primary, address, name, device):
         super().__init__(polyglot, primary, address, name)
