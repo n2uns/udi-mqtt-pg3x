@@ -18,7 +18,7 @@
             <range uom="5" min="0" max="500" prec="3" />
     </editor>
     <editor id="ANALOG">
-            <range uom="56" min="0" max="1024" prec="2" />
+            <range uom="56" min="0" max="1024" prec="0" />
     </editor>
     <editor id="ANALOG1">
             <range uom="56" min="0" max="4095" prec="0" />
