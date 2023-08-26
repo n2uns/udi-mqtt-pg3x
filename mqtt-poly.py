@@ -25,7 +25,7 @@ class Controller(udi_interface.Node):
         self.mqtt_user = None
         self.mqtt_password = None
         self.devlist = None
-        self.mqtt_topic = None
+        self.topic = None
         # example: [ {'id': 'sonoff1', 'type': 'switch', 'status_topic': 'stat/sonoff1/power', 'cmd_topic': 'cmnd/sonoff1/power'} ]
         self.status_topics = []
         # Maps to device IDs
@@ -56,7 +56,7 @@ class Controller(udi_interface.Node):
 
         self.mqtt_user = self.Parameters["mqtt_user"]
         self.mqtt_password = self.Parameters["mqtt_password"]
-        topic = self.Parameters["mqtt_topic"]
+        self.topic = self.Parameters["mqtt_topic"]
 
         if self.Parameters["devfile"] is not None:
             try:
@@ -292,7 +292,7 @@ class Controller(udi_interface.Node):
 
 # ************************************************ add in wait for Topic/INFO to come in and creat Node for the devices
     def discover(self, command=None):
-        LOGGER.error("Topic is {}".format(topic))
+        LOGGER.error("Topic is {}".format(self.topic))
         pass
 
     id = "MQCTRL"
