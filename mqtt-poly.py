@@ -96,7 +96,7 @@ class Controller(udi_interface.Node):
                 return False
         else:
             LOGGER.error("devlist must be configured")
-            return True #False
+            return True  #False
 
         self.valid_configuration = True
 
