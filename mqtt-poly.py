@@ -32,7 +32,7 @@ class Controller(udi_interface.Node):
         self.mqttc = None
         self.valid_configuration = False
 
-        sel3f.poly.subscribe(polyglot.START, self.start, address)
+        self.poly.subscribe(polyglot.START, self.start, address)
         self.poly.subscribe(polyglot.CUSTOMPARAMS, self.parameter_handler)
         # self.poly.subscribe(polyglot.POLL, self.poll)
         self.poly.subscribe(polyglot.STOP, self.stop)
