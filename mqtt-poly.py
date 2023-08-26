@@ -292,7 +292,8 @@ class Controller(udi_interface.Node):
 
 # ************************************************ add in wait for Topic/INFO to come in and creat Node for the devices
     def discover(self, command=None):
-        if self.mqttc.subscribe(self.topic) == 0:
+        result = self.mqttc.subscribe(self.topic)
+        if result[0] == 0:
             LOGGER.info("Topic is ")
             LOGGER.info("Subscribed to {}".format(self.topic))
         pass
