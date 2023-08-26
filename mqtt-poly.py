@@ -56,6 +56,7 @@ class Controller(udi_interface.Node):
 
         self.mqtt_user = self.Parameters["mqtt_user"]
         self.mqtt_password = self.Parameters["mqtt_password"]
+        # ***************************************    read in the topic from config
         self.topic = self.Parameters["mqtt_topic"]
 
         if self.Parameters["devfile"] is not None:
@@ -264,6 +265,7 @@ class Controller(udi_interface.Node):
     def _on_message(self, mqttc, userdata, message):
         topic = message.topic
         payload = message.payload.decode("utf-8")
+        LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
         LOGGER.debug("Received {} from {}".format(payload, topic))
         try:
             self.poly.getNode(self._dev_by_topic(topic)).updateInfo(payload, topic)
