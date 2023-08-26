@@ -265,8 +265,10 @@ class Controller(udi_interface.Node):
     def _on_message(self, mqttc, userdata, message):
         topic = message.topic
         payload = message.payload.decode("utf-8")
-        LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
-        LOGGER.debug("Received {} from {}".format(payload, topic))
+        if self.topic.find("INFO1") > 0:
+            LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
+            LOGGER.debug("Received {} from {}".format(payload, topic))
+
         try:
             self.poly.getNode(self._dev_by_topic(topic)).updateInfo(payload, topic)
         except Exception as ex:
