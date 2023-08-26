@@ -295,7 +295,7 @@ class Controller(udi_interface.Node):
         result = self.mqttc.subscribe(self.topic)
         if result[0] == 0:
             LOGGER.info("Topic is ght ")
-            LOGGER.info("Subscribed to {} result is {} {}".format(self.topic),result[0],result[1])
+            LOGGER.info("Subscribed to {} result is {} {}".format(self.topic,result[0],result[1]))
         pass
 
     id = "MQCTRL"
