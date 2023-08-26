@@ -25,7 +25,7 @@ class Controller(udi_interface.Node):
         self.mqtt_user = None
         self.mqtt_password = None
         self.devlist = None
-        self.topic = None
+        self.INFO1 = None
         # example: [ {'id': 'sonoff1', 'type': 'switch', 'status_topic': 'stat/sonoff1/power', 'cmd_topic': 'cmnd/sonoff1/power'} ]
         self.status_topics = []
         # Maps to device IDs
@@ -57,7 +57,7 @@ class Controller(udi_interface.Node):
         self.mqtt_user = self.Parameters["mqtt_user"]
         self.mqtt_password = self.Parameters["mqtt_password"]
         # ***************************************    read in the topic from config
-        self.topic = self.Parameters["mqtt_topic"]
+        self.INFO1 = self.Parameters["mqtt_topic"]
 
         if self.Parameters["devfile"] is not None:
             try:
@@ -265,7 +265,7 @@ class Controller(udi_interface.Node):
     def _on_message(self, mqttc, userdata, message):
         topic = message.topic
         payload = message.payload.decode("utf-8")
-        if self.topic.find("INFO1") > 0:
+        if payload.find("Info1") > 0:
             LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
             LOGGER.info("Received {} from {}".format(payload, topic))
 
@@ -297,10 +297,10 @@ class Controller(udi_interface.Node):
 
 # ************************************************ add in wait for Topic/INFO to come in and creat Node for the devices
     def discover(self, command=None):
-        result = self.mqttc.subscribe(self.topic)
+        result = self.mqttc.subscribe(self.INFO1)
         if result[0] == 0:
             LOGGER.info("Topic is ght ")
-            LOGGER.info("Subscribed to {} result is {} {}".format(self.topic,result[0],result[1]))
+            LOGGER.info("Subscribed to {} result is {} {}".format(self.INFO1,result[0],result[1]))
             # subscribed to topic now wait for message topic/INFO
         pass
 
