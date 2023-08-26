@@ -96,7 +96,7 @@ class Controller(udi_interface.Node):
                 return False
         else:
             LOGGER.error("devlist must be configured")
-            return False
+            return True #False
 
         self.valid_configuration = True
 
@@ -296,6 +296,7 @@ class Controller(udi_interface.Node):
         if result[0] == 0:
             LOGGER.info("Topic is ght ")
             LOGGER.info("Subscribed to {} result is {} {}".format(self.topic,result[0],result[1]))
+            # subscribed to topic now wait for message topic/INFO
         pass
 
     id = "MQCTRL"
