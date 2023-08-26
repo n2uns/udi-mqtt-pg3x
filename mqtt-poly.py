@@ -292,7 +292,7 @@ class Controller(udi_interface.Node):
 
 # ************************************************ add in wait for Topic/INFO to come in and creat Node for the devices
     def discover(self, command=None):
-        LOGGER.error("Topic is {}".format(self.topic))
+        LOGGER.info("Topic is {}".format(self.mqttc.subscribe(self.topic)))
         pass
 
     id = "MQCTRL"
