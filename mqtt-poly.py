@@ -95,8 +95,9 @@ class Controller(udi_interface.Node):
                 LOGGER.error("Failed to parse the devlist: {}".format(ex))
                 return False
         else:
-            LOGGER.error("devlist must be configured")
-            #return True  #False
+            LOGGER.error("devlist must be configured")  # set up default null device-list so system does not crash
+            self.valid_configuration = True
+            return True  #False
 
         self.valid_configuration = True
 
