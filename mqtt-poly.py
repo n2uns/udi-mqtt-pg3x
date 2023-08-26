@@ -32,7 +32,7 @@ class Controller(udi_interface.Node):
         self.mqttc = None
         self.valid_configuration = False
 
-        self.poly.subscribe(polyglot.START, self.start, address)
+        sel3f.poly.subscribe(polyglot.START, self.start, address)
         self.poly.subscribe(polyglot.CUSTOMPARAMS, self.parameter_handler)
         # self.poly.subscribe(polyglot.POLL, self.poll)
         self.poly.subscribe(polyglot.STOP, self.stop)
@@ -289,6 +289,7 @@ class Controller(udi_interface.Node):
             node.reportDrivers()
 
     def discover(self, command=None):
+        LOGGER.error("Descover is pressed")
         pass
 
     id = "MQCTRL"
