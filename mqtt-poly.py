@@ -267,7 +267,7 @@ class Controller(udi_interface.Node):
         payload = message.payload.decode("utf-8")
         if payload.find("Info1") > 0:
             myinfo1 = json.loads(payload)
-            if "Generic" in myinfo1['Module']:
+            if "Generic" in myinfo1["Module"]:
                 LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
                 LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
 
