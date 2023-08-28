@@ -58,6 +58,8 @@ class Controller(udi_interface.Node):
         self.mqtt_password = self.Parameters["mqtt_password"]
         # ***************************************    read in the topic from config
         self.INFO1 = "tele/{}/INFO1".format(self.Parameters["mqtt_topic"])
+        self.INFO1 = "tele/{}/STATE".format(self.Parameters["mqtt_topic"])
+        self.INFO1 = "tele/{}/SENSOR".format(self.Parameters["mqtt_topic"])
 
         if self.Parameters["devfile"] is not None:
             try:
@@ -268,7 +270,6 @@ class Controller(udi_interface.Node):
         #if payload.find("Info1") > 0:
         #    myinfo1 = json.loads(payload)
         #    if "Module" in payload:
-        LOGGER.info("payload is {}".format(payload))  # 8888888888 need to see what the payload looks like
         #LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
 
         try:
