@@ -58,8 +58,8 @@ class Controller(udi_interface.Node):
         self.mqtt_password = self.Parameters["mqtt_password"]
         # ***************************************    read in the topic from config
         self.INFO1 = "tele/{}/INFO1".format(self.Parameters["mqtt_topic"])
-        self.INFO1 = "tele/{}/STATE".format(self.Parameters["mqtt_topic"])
-        self.INFO1 = "tele/{}/SENSOR".format(self.Parameters["mqtt_topic"])
+        self.INFO2 = "tele/{}/STATE".format(self.Parameters["mqtt_topic"])
+        self.INFO3 = "tele/{}/SENSOR".format(self.Parameters["mqtt_topic"])
 
         if self.Parameters["devfile"] is not None:
             try:
