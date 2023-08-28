@@ -267,10 +267,10 @@ class Controller(udi_interface.Node):
     def _on_message(self, mqttc, userdata, message):
         topic = message.topic
         payload = message.payload.decode("utf-8")
-        #if payload.find("Info1") > 0:
+        if payload.find("Info1") > 0:
         #    myinfo1 = json.loads(payload)
         #    if "Module" in payload:
-        #LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
+        LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
 
         try:
             self.poly.getNode(self._dev_by_topic(topic)).updateInfo(payload, topic)
