@@ -268,9 +268,9 @@ class Controller(udi_interface.Node):
         topic = message.topic
         payload = message.payload.decode("utf-8")
         if payload.find("Info1") > 0:
-        #    myinfo1 = json.loads(payload)
+            myinfo1 = payload
         #    if "Module" in payload:
-        LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
+            LOGGER.info("Received {} from {}".format(myinfo1["Module"], topic))
 
         try:
             self.poly.getNode(self._dev_by_topic(topic)).updateInfo(payload, topic)
